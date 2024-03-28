@@ -23,9 +23,17 @@ const START_SERVER = () => {
   // Middlewares xử lý lỗi tập trung
   app.use(errorHandlingMiddleware);
 
-  app.listen(env.PORT, env.HOSTNAME, () => {
-    console.log(`>>> Ứng dụng đang chạy trên cổng ${env.HOSTNAME}:${env.PORT}`);
-  });
+  if (env.BUILD_MODE === 'production') {
+    // môi trường production
+    app.listen(process.env.LOCAL_DEV_APP_PORT, () => {
+      console.log(`>>> Backend Server running successfully at PORT: ${process.env.LOCAL_DEV_APP_PORT}`);
+    });
+  } else {
+    // môi trường dev
+    app.listen(env.LOCAL_DEV_APP_PORT, env.LOCAL_DEV_APP_HOST, () => {
+      console.log(`>>> Backend Server running successfully at: https://${env.LOCAL_DEV_APP_HOST}:${env.LOCAL_DEV_APP_PORT}`);
+    });
+  }
 
   // Thực hiện các tác vụ clenup trước khi dừng server
   // npm async-exit-hook
