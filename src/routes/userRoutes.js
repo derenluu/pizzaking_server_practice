@@ -1,7 +1,7 @@
 const StatusCodes = require('http-status-codes');
 const express = require('express');
-const movieValidate = require('../validations/movieValidation');
-const movieController = require('../controllers/movieController');
+const userValidate = require('../validations/userValidation');
+const userController = require('../controllers/userController');
 
 const Router = express.Router();
 
@@ -9,6 +9,6 @@ Router.route('/')
   .get((req, res, next) => {
     res.status(StatusCodes.OK).json({message: `Note: API get ${StatusCodes.OK}`});
   })
-  .post(movieValidate.createNew, movieController.createNew);
+  .post(userValidate.createNew, userController.createNew);
 
-module.exports = moviesAPIs = Router;
+module.exports = userAPIs = Router;

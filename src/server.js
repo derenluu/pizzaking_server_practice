@@ -6,7 +6,7 @@ const {CONNECT_DB, GET_DB, CLOSE_DB} = require('./config/mongoDb');
 // const {getHomePage} = require('./controllers/movieController');
 const exitHook = require('async-exit-hook');
 const env = require('./config/environment');
-const movies = require('./routes');
+const user = require('./routes');
 const errorHandlingMiddleware = require('./middlewares/errorHandling');
 
 const START_SERVER = () => {
@@ -18,17 +18,10 @@ const START_SERVER = () => {
   // Enable req.body json data
   app.use(express.json());
 
-  app.use('/api', movies);
+  app.use('/api', user);
 
   // Middlewares xử lý lỗi tập trung
   app.use(errorHandlingMiddleware);
-
-  // app.use('/v1', async (req, res, next) => {
-  //   // console.log(await GET_DB().listCollections().toArray());
-  //   // getHomePage();
-  //   res.send('hello pro');
-  //   console.log(`>>> Hi ${env.AUTHOR}`);
-  // });
 
   app.listen(env.PORT, env.HOSTNAME, () => {
     console.log(`>>> Ứng dụng đang chạy trên cổng ${env.HOSTNAME}:${env.PORT}`);

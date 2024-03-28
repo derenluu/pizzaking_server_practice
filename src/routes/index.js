@@ -1,10 +1,10 @@
 const express = require('express');
 // const StatusCodes = require('http-status-codes');
-const moviesAPIs = require('./movieRoutes');
+const userAPIs = require('./userRoutes');
 
 const Router = express.Router();
 
 // Router.get('/status', (req, res) => {});
-Router.use('/movies', moviesAPIs);
+Router.use('/user', userAPIs);
 
-module.exports = movies = Router;
+module.exports = user = Router;
