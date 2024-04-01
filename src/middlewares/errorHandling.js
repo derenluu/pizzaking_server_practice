@@ -1,4 +1,4 @@
-// Updated by trungquandev.com'
+// Updated by youtuber: trungquandev.com
 
 const StatusCodes = require('http-status-codes');
 const env = require('../config/environment');
